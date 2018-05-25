@@ -1,6 +1,6 @@
 FROM centos
 RUN yum clean all
-RUN yum makecahe
+RUN yum makecache
 RUN yum install epel-release -y
 RUN yum install supervisor -y
 RUN mkdir -p /var/log/supervisor
