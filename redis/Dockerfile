@@ -1,4 +1,4 @@
-FROM ccr.ccs.tencentyun.com/wind/centos-sshd
+FROM ccr.ccs.tencentyun.com/wind/centos-supervisord
 RUN yum install redis -y
 RUN echo -e "[program:redis]\ncommand=/usr/bin/redis-server" > /etc/supervisord.d/redis.ini
 CMD ["/usr/bin/supervisord"]
