@@ -1,4 +1,4 @@
-FROM ccr.ccs.tencentyun.com/wind/centos
+FROM centos
 RUN yum install epel-release -y
 RUN yum install supervisor -y
 RUN mkdir -p /var/log/supervisor
