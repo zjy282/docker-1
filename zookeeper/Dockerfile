@@ -5,7 +5,7 @@ ENV JDKVER java-1.8.0-openjdk.x86_64
 
 WORKDIR $WORKPATH
 
-ADD http://mirror.bit.edu.cn/apache/zookeeper/stable/$ZKVER.tar.gz .
+ADD http://of8hb57or.bkt.clouddn.com/$ZKVER.tar.gz .
 COPY ./zkInit.sh /opt/$ZKVER/bin/
 
 RUN yum install -y $JDKVER
