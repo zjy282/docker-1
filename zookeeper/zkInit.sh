@@ -1,8 +1,14 @@
 #! /bin/sh
 
-if [[ -f /opt/$ZKVER/conf/zoo.cfg && ! -f zkIniting ]]
+if [[ -f /opt/$ZKVER/conf/zoo.cfg && ! -f zkIniting && ]]
 then
     /opt/$ZKVER/bin/zkServer.sh start
+    exit 0
+fi
+
+if [[ -f /tmp/zookeeper/zookeeper_server.pid ]]
+then
+    echo "/tmp/zookeeper/zookeeper_server.pid exists"
     exit 0
 fi
 
