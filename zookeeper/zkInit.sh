@@ -6,8 +6,11 @@ then
     exit 0
 fi
 
-wget -q "http://of8hb57or.bkt.clouddn.com/$ZKVER.tar.gz" -O /opt/zookeeper.tar.gz
-tar -zxf /opt/zookeeper.tar.gz
+if [[ ! -d /opt/$ZKVER ]]
+then
+    wget -q "http://of8hb57or.bkt.clouddn.com/$ZKVER.tar.gz" -O /opt/zookeeper.tar.gz
+    tar -zxf /opt/zookeeper.tar.gz
+fi
 
 cp -f /opt/$ZKVER/conf/zoo_sample.cfg /opt/$ZKVER/conf/zoo.cfg
 mkdir -p /tmp/zookeeper
