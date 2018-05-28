@@ -1,10 +1,12 @@
 #! /bin/sh
 
-if [[ -f /opt/$ZKVER/conf/zoo.cfg ]]
+if [[ -f /opt/$ZKVER/conf/zoo.cfg && ! -f zkIniting ]]
 then
     /opt/$ZKVER/bin/zkServer.sh start
     exit 0
 fi
+
+touch zkIniting
 
 if [[ ! -d /opt/$ZKVER ]]
 then
@@ -39,7 +41,7 @@ do
 done
 
 sed -i "1a\export JMX_PORT=9999" /opt/$ZKVER/bin/zkServer.sh
-
 /opt/$ZKVER/bin/zkServer.sh start
+rm -rf zkIniting
 
 echo "Done"
