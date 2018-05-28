@@ -11,5 +11,5 @@ RUN wget -q "http://of8hb57or.bkt.clouddn.com/$ZKVER.tar.gz" -O /opt/zookeeper.t
 COPY ./zkInit.sh /opt/zkInit.sh
 RUN chmod +x /opt/zkInit.sh
 
-RUN echo -e "[program:zookeeper]\ncommand=/opt/$ZKVER/bin/zkServer.sh" > /etc/supervisord.d/zookeeper.ini
+RUN echo -e "[program:zookeeper]\ncommand=/opt/$ZKVER/bin/zkServer.sh start" > /etc/supervisord.d/zookeeper.ini
 CMD ["/opt/zkInit.sh"]
