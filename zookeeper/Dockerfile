@@ -7,7 +7,7 @@ WORKDIR $WORKPATH
 
 RUN yum install wget -y $JDKVER
 
-RUN wget "http://of8hb57or.bkt.clouddn.com/$ZKVER.tar.gz" -O /opt/zookeeper.tar.gz
+RUN wget -q "http://of8hb57or.bkt.clouddn.com/$ZKVER.tar.gz" -O /opt/zookeeper.tar.gz
 COPY ./zkInit.sh /opt/zkInit.sh
 RUN chmod +x /opt/zkInit.sh
 
