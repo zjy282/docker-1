@@ -7,7 +7,7 @@ WORKDIR $WORKPATH
 
 RUN yum install -y wget
 RUN wget -q "http://of8hb57or.bkt.clouddn.com/$ZKVER.tar.gz"
-RUN echo "/opt/$ZKVER.tar.gz" | xargs tar -zxvf /opt/
+RUN tar -zxf $ZKVER.tar.gz .
 COPY ./zkInit.sh /opt/$ZKVER/bin/zkInit.sh
 RUN chmod +x /opt/$ZKVER/bin/zkInit.sh
 
