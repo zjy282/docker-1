@@ -11,6 +11,6 @@ RUN wget -q "http://of8hb57or.bkt.clouddn.com/$KFKVER.tgz" -O /opt/kfk.tgz
 COPY ./kfkInit.sh /opt/kfkInit.sh
 COPY ./kfk.ini /etc/supervisord.d/kfk.ini
 RUN chmod +x /opt/kfkInit.sh
-RUN ln -s /opt/$KFKVER/bin/kafka-server-start.sh /opt/kafka-server-start.sh
+RUN ln -s /opt/$KFKVER kafka
 
 CMD ["/opt/kfkInit.sh"]
