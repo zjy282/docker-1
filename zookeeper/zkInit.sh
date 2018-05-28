@@ -1,19 +1,5 @@
 #! /bin/sh
 
-if [[ -f /opt/$ZKVER/conf/zoo.cfg && ! -f zkIniting && ]]
-then
-    /opt/$ZKVER/bin/zkServer.sh start
-    exit 0
-fi
-
-if [[ -f /tmp/zookeeper/zookeeper_server.pid ]]
-then
-    echo "/tmp/zookeeper/zookeeper_server.pid exists"
-    exit 0
-fi
-
-touch zkIniting
-
 if [[ ! -d /opt/$ZKVER ]]
 then
     wget -q "http://of8hb57or.bkt.clouddn.com/$ZKVER.tar.gz" -O /opt/zookeeper.tar.gz
@@ -47,7 +33,5 @@ do
 done
 
 sed -i "1a\export JMX_PORT=9999" /opt/$ZKVER/bin/zkServer.sh
-/opt/$ZKVER/bin/zkServer.sh start
-rm -rf zkIniting
 
-echo "Done"
+/usr/bin/supervisord
