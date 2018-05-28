@@ -9,5 +9,5 @@ COPY ./zkInit.sh /opt/zkInit.sh
 RUN chmod +x /opt/zkInit.sh
 
 RUN yum install wget -y $JDKVER
-RUN echo -e "[program:zookeeper]\ncommand=/opt/zkInit.sh" > /etc/supervisord.d/zookeeper.ini
-CMD ["/usr/bin/supervisord"]
+RUN echo -e "[program:zookeeper]\ncommand=/opt/$ZKVER/bin/zkServer.sh" > /etc/supervisord.d/zookeeper.ini
+CMD ["/opt/zkInit.sh"]
