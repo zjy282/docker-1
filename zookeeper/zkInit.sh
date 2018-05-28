@@ -31,6 +31,4 @@ do
     j=$[j+1]
 done
 
-sed -i "1a\export JMX_PORT=9999" /opt/$ZKVER/bin/zkServer.sh
-
 /usr/bin/supervisord
