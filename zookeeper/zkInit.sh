@@ -7,7 +7,7 @@ then
 fi
 
 wget -q "http://of8hb57or.bkt.clouddn.com/$ZKVER.tar.gz" -O /opt/zookeeper.tar.gz
-tar -zxf /opt/zookeeper.tar.gz /opt/
+tar -zxf /opt/zookeeper.tar.gz
 
 cp -f /opt/$ZKVER/conf/zoo_sample.cfg /opt/$ZKVER/conf/zoo.cfg
 mkdir -p /tmp/zookeeper
