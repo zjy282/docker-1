@@ -2,7 +2,6 @@
 
 if [[ ! -d /opt/$ZKVER ]]
 then
-    wget -q "http://of8hb57or.bkt.clouddn.com/$ZKVER.tar.gz" -O /opt/zookeeper.tar.gz
     tar -zxf /opt/zookeeper.tar.gz
 fi
 
