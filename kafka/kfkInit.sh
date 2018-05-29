@@ -11,17 +11,38 @@ then
     exit 2
 fi
 
-if [[ -z $LOCALHOST ]]
+if [[ -z $KFKHOST ]]
 then
-    echo "LOCALHOST is empty"
+    echo "KFKHOST is empty"
     exit 2
 fi
 
+local_ips=$(ip -4 addr | grep -o -E "inet ([0-9]+\.){3}[0-9]+" | awk '{print $2}')
+local_ip=""
+for i in ${local_ips[@]}
+do
+    echo $KFKHOST | grep $i > /dev/null
+    if [[ 0 -eq $? ]]
+    then
+        local_ip=$i
+        break
+    fi
+done
+
+if [[ -z $local_ip ]]
+then
+    echo "local_ip is empty"
+    exit 2
+fi
+
+partition_count=$[$(echo "$KFKHOST" | grep -o "," | wc -l)+1]
+
 sed -i "s/^broker.id=0/broker.id=-1/g" /opt/kafka/config/server.properties
+sed -i "s/^num.partitions=1/num.partitions=$partition_count/g" /opt/kafka/config/server.properties
 sed -i "s/zookeeper.connect=localhost:2181/zookeeper.connect=$ZKHOST/g" /opt/kafka/config/server.properties
 
 echo "" >> /opt/kafka/config/server.properties
-echo "listeners=PLAINTEXT://$LOCALHOST:9092" >> /opt/kafka/config/server.properties
+echo "listeners=PLAINTEXT://$local_ip:9092" >> /opt/kafka/config/server.properties
 echo "producer.type=async" >> /opt/kafka/config/server.properties
 echo "request.required.acks=1" >> /opt/kafka/config/server.properties
 echo "queue.buffering.max.ms=100" >> /opt/kafka/config/server.properties
