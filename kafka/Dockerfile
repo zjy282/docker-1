@@ -5,7 +5,7 @@ ENV JDKVER java-1.8.0-openjdk.x86_64
 
 WORKDIR $WORKPATH
 
-RUN yum install wget -y $JDKVER
+RUN yum install wget iproute $JDKVER -y
 
 RUN wget -q "http://of8hb57or.bkt.clouddn.com/$KFKVER.tgz" -O /opt/kfk.tgz
 COPY ./kfkInit.sh /opt/kfkInit.sh
