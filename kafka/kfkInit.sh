@@ -11,9 +11,17 @@ then
     exit 2
 fi
 
-sed -i "s/^broker.id=0/broker.id=-1/g" /opt/kafka/config/server.properties
+if [[ -z $LOCALHOST ]]
+then
+    echo "LOCALHOST is empty"
+    exit 2
+fi
 
-echo "zookeeper.connect=$ZKHOST" >> /opt/kafka/config/server.properties
+sed -i "s/^broker.id=0/broker.id=-1/g" /opt/kafka/config/server.properties
+sed -i "s/zookeeper.connect=localhost:2181/zookeeper.connect=$ZKHOST/g" /opt/kafka/config/server.properties
+
+echo "" >> /opt/kafka/config/server.properties
+echo "listeners=PLAINTEXT://$LOCALHOST:9092" >> /opt/kafka/config/server.properties
 echo "producer.type=async" >> /opt/kafka/config/server.properties
 echo "request.required.acks=1" >> /opt/kafka/config/server.properties
 echo "queue.buffering.max.ms=100" >> /opt/kafka/config/server.properties
