@@ -35,6 +35,9 @@ then
     exit 2
 fi
 
+m=$[$(cat /proc/meminfo |grep 'MemTotal' |awk '{print $2}')/2048]
+export KAFKA_HEAP_OPTS="-Xmx${m}M -Xms${m}M"
+
 partition_count=$[$(echo "$KFKHOST" | grep -o "," | wc -l)+1]
 
 sed -i "s/^broker.id=0/broker.id=-1/g" /opt/kafka/config/server.properties
