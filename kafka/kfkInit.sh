@@ -38,10 +38,14 @@ fi
 m=$[$(cat /proc/meminfo |grep 'MemTotal' |awk '{print $2}')/2048]
 export KAFKA_HEAP_OPTS="-Xmx${m}M -Xms${m}M"
 
-partition_count=$[$(echo "$KFKHOST" | grep -o "," | wc -l)+1]
+if [[ -z $NUMP ]]
+then
+    NUMP=$[$(echo "$KFKHOST" | grep -o "," | wc -l)+1]
+fi
+
 
 sed -i "s/^broker.id=0/broker.id=-1/g" /opt/kafka/config/server.properties
-sed -i "s/^num.partitions=1/num.partitions=$partition_count/g" /opt/kafka/config/server.properties
+sed -i "s/^num.partitions=1/num.partitions=$NUMP/g" /opt/kafka/config/server.properties
 sed -i "s/zookeeper.connect=localhost:2181/zookeeper.connect=$ZKHOST/g" /opt/kafka/config/server.properties
 
 echo "" >> /opt/kafka/config/server.properties
