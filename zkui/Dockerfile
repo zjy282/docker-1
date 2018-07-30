@@ -7,5 +7,7 @@ WORKDIR /opt/zkui-master
 
 RUN mvn clean install
 COPY ./zkui_init.sh /opt/zkui_init.sh
-RUN chmod +x /opt/zkui_init.sh
+COPY ./zkui.ini /etc/supervisord.d/zkui.ini
+COPY ./zkui.sh /opt/zkui.sh
+RUN chmod +x /opt/zkui_init.sh /opt/zkui.sh
 CMD ["/opt/zkui_init.sh"]
