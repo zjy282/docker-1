@@ -6,7 +6,7 @@ then
     exit 2
 fi
 
-sed -i "s/^zkServer/zkServer=$ZKHOST" /opt/zkui-master/config.cfg
+sed -i "s/^zkServer/zkServer=$ZKHOST/g" /opt/zkui-master/config.cfg
 
 nohup java -jar zkui-2.0-SNAPSHOT-jar-with-dependencies.jar &
 
