@@ -1,4 +1,4 @@
-FROM FROM ccr.ccs.tencentyun.com/wind/centos-supervisord
+FROM FROM registry.cn-qingdao.aliyuncs.com/wind-ali/centos-supervisord
 ENV WORKPATH /opt/
 ENV PROVER elasticsearch-6.4.3
 ENV JDKVER java-1.8.0-openjdk.x86_64
