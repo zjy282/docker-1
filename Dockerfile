@@ -1,0 +1,14 @@
+FROM FROM ccr.ccs.tencentyun.com/wind/centos-supervisord
+ENV WORKPATH /opt/
+ENV PROVER elasticsearch-6.4.3
+ENV JDKVER java-1.8.0-openjdk.x86_64
+
+RUN yum install wget iproute $JDKVER -y
+
+RUN wget -q "https://artifacts.elastic.co/downloads/elasticsearch/$PROVER.rpm" -O /opt/es.rpm
+COPY ./Init.sh /opt/Init.sh
+RUN chmod +x /opt/Init.sh
+
+WORKDIR $WORKPATH
+
+CMD ["/opt/Init.sh"]
