@@ -7,6 +7,7 @@ RUN yum install wget iproute $JDKVER -y
 
 RUN wget -q "https://artifacts.elastic.co/downloads/elasticsearch/$PROVER.rpm" -O /opt/es.rpm
 COPY ./Init.sh /opt/Init.sh
+COPY ./es.ini /etc/elasticsearch/es.ini
 RUN chmod +x /opt/Init.sh
 
 WORKDIR $WORKPATH
