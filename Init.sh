@@ -35,6 +35,10 @@ echo "http.port: 9200" >> /etc/elasticsearch/elasticsearch.yml
 echo "transport.tcp.port: 9300" >> /etc/elasticsearch/elasticsearch.yml
 echo "discovery.zen.ping.unicast.hosts: [${HOST}]" >> /etc/elasticsearch/elasticsearch.yml
 
+echo -e "elasticsearch soft memlock unlimited\nelasticsearch hard memlock unlimited" >> /etc/security/limits.conf
+echo -e "vm.max_map_count=262144" >> /etc/sysctl.conf
+usermod -s /bin/sh elasticsearch
+
 #path.data: /var/lib/elasticsearch
 #path.logs: /var/log/elasticsearch
 
