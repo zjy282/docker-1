@@ -35,4 +35,7 @@ echo "http.port: 9200" >> /etc/elasticsearch/elasticsearch.yml
 echo "transport.tcp.port: 9300" >> /etc/elasticsearch/elasticsearch.yml
 echo "discovery.zen.ping.unicast.hosts: [${HOST}]" >> /etc/elasticsearch/elasticsearch.yml
 
+#path.data: /var/lib/elasticsearch
+#path.logs: /var/log/elasticsearch
+
 /usr/bin/supervisord -c /etc/supervisord.conf
