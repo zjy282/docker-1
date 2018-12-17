@@ -11,9 +11,6 @@ COPY ./Init.sh /opt/Init.sh
 COPY ./es.ini /etc/supervisord.d/es.ini
 RUN chmod +x /opt/Init.sh
 
-RUN echo -e "elasticsearch soft memlock unlimited\nelasticsearch hard memlock unlimited" >> /etc/security/limits.conf
-RUN echo -e "vm.max_map_count=262144" >> /etc/sysctl.conf
-
 WORKDIR $WORKPATH
 
 CMD ["/opt/Init.sh"]
