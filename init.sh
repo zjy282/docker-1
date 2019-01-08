@@ -14,7 +14,9 @@ sed -i "avpn pptpd $RANDOM *" /etc/ppp/chap-secrets
 /etc/init.d/pptpd start
 chkconfig pptpd on
 
-sed -i "acommand=/root/go/bin/shadowsocks-server -p 2333 -k $pass -m aes-256-cfb -t 10" /etc/supervisord.d/shadow.ini
+unzip /opt/shadowsocks-server.zip -d /opt
+
+sed -i "acommand=/opt/shadowsocks-server -p 2333 -k $pass -m aes-256-cfb -t 10" /etc/supervisord.d/shadow.ini
 
 echo "password:$pass\n"
 echo "port:2333\n"
