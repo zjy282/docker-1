@@ -22,4 +22,4 @@ echo "password:$pass\n"
 echo "port:2333\n"
 echo "encryption:aes-256-cfb\n"
 
-supervisord
+/usr/bin/supervisord
