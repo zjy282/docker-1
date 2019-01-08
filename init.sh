@@ -15,9 +15,9 @@ unzip /opt/shadowsocks-server.zip -d /opt
 
 sed -i "acommand=/opt/shadowsocks-server -p 2333 -k $pass -m aes-256-cfb -t 10" /etc/supervisord.d/shadow.ini
 
-echo "password:$pass\n"
-echo "port:2333\n"
-echo "encryption:aes-256-cfb\n"
+echo "password:$pass"
+echo "port:2333"
+echo "encryption:aes-256-cfb"
 
 pptpd
 /usr/bin/supervisord -c /etc/supervisord.conf
