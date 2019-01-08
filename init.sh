@@ -11,8 +11,8 @@ sysctl -p
 pass=$RANDOM 
 sed -i "avpn pptpd $RANDOM *" /etc/ppp/chap-secrets
 
-/etc/init.d/pptpd start
 chkconfig pptpd on
+pptpd
 
 unzip /opt/shadowsocks-server.zip -d /opt
 
