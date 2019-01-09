@@ -13,7 +13,7 @@ echo "vpn pptpd $pass *" > /etc/ppp/chap-secrets
 
 unzip /opt/shadowsocks-server.zip -d /opt
 
-echo "command=/opt/shadowsocks-server -p 2333 -k $pass -m aes-256-cfb -t 10" >> /etc/supervisord.d/shadow.ini
+echo -e "\ncommand=/opt/shadowsocks-server -p 2333 -k $pass -m aes-256-cfb -t 10" >> /etc/supervisord.d/shadow.ini
 
 echo ""
 echo "password:$pass"
