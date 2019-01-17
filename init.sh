@@ -30,5 +30,3 @@ then
         fi;
     done
 fi
-
-supervisord
