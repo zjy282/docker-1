@@ -31,4 +31,15 @@ then
     done
 fi
 
+if [[ $# -gt 0 ]]
+then
+    for i in $@
+    do
+        if [[ -f "$i" ]]
+        then
+            source $i
+        fi
+    done
+fi
+
 supervisord
