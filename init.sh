@@ -17,7 +17,7 @@ function yaf() {
 
 function grpc() {
     pecl install grpc
-    echo "extension=grpc.so" >> /etc/php.d/grpc.so
+    echo "extension=grpc.so" >> /etc/php.d/grpc.ini
 }
 
 if [[ ${#MODULES[@]} -gt 0 ]]
