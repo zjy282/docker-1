@@ -5,6 +5,7 @@ RUN yum install nodejs -y
 RUN npm install --global nodemon
 COPY ./nodemon.json /etc/nodemon.json
 RUN echo 'alias nodemon="nodemon --config /etc/nodemon.json"' >> /etc/bashrc
+RUN npm install npm@latest -g
 
 EXPOSE 80
 EXPOSE 9000
