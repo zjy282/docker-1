@@ -1,4 +1,4 @@
-FROM ccr.ccs.tencentyun.com/wind/centos-supervisord
+FROM ccr.ccs.tencentyun.com/wind/supervisord
 WORKDIR /opt
 RUN curl -o /opt/go.tar.gz "https://dl.google.com/go/go1.12.1.linux-amd64.tar.gz" 
 RUN tar -zxvf /opt/go.tar.gz && ln -s /opt/go/bin/go* /usr/bin/
