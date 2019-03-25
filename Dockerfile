@@ -4,4 +4,4 @@ RUN sshd-keygen
 RUN mkdir -p /var/run/sshd
 RUN echo "PermitRootLogin without-password" >> /etc/ssh/sshd_config
 RUN echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
-CMD ["/usr/sbin/sshd -D"]
+CMD ["/usr/sbin/sshd"]
