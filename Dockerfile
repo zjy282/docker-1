@@ -1,1 +1,1 @@
-FROM centos
+FROM docker.io/centos
