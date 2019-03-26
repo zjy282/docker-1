@@ -5,4 +5,4 @@ RUN tar -zxvf /opt/go.tar.gz && ln -s /opt/go/bin/go* /usr/bin/
 RUN yum install git -y
 RUN git config --global credential.helper store
 RUN mkdir -p $(go env GOPATH)/bin $(go env GOPATH)/pkg $(go env GOPATH)/src
-RUN export GOBIN=$(go env GOPATH)/bin
+RUN echo "export GOBIN=$(go env GOPATH)/bin" >> /etc/profile.d/go.sh
