@@ -21,17 +21,18 @@ then
     exit 3
 fi
 
+src=$(go env GOPATH)/src
+
 #注入git权限
-git config --global credential.helper store
 echo aHR0cHM6Ly9ndWlxaWFuZzoyMDEzMTIyNUBjb2RlLnFzY2hvdS5jb20K | base64 -d > ~/.git-credentials
 echo "" >> /etc/hosts && echo "10.27.113.171 code.qschou.com" >> /etc/hosts
 
 for addr in ${GIT_ADDRS[@]}
 do
-    proDir=$(go env GOPATH)/$(echo $addr | awk -F "://" '{print $2}' | awk -F '.git' '{print $1}')
+    proDir=$src/$(echo $addr | awk -F "://" '{print $2}' | awk -F '.git' '{print $1}')
     mkdir -p $proDir
     git clone $addr $proDir/
 done
 
-go build -o server $(go env GOPATH)/$MAIN_FILE
+go build -o server $src/$MAIN_FILE
 source $(go env GOBIN)/server
