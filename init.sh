@@ -27,13 +27,13 @@ export CONF_DIR=$src/$CONF_DIR
 mainFile=$src/$MAIN_FILE
 confDir=$src/$CONF_DIR
 
-if [[ !-d $confDir ]]
+if [ !-d $confDir ]
 then
     echo "CONF_DIR dir is not found"
     exit 4
 fi
 
-if [[ !-f $mainFile ]]
+if [ !-f $mainFile ]
 then
     echo "MAIN_FILE file is not found"
     exit 5
