@@ -1,10 +1,10 @@
 #!/bin/sh
 
 checkVarEmpty() {
-    if [ -z "$CONF_DIR" ] #配置目录
+    if [ -z "$CONFIG_DIR" ] #配置目录
     then
-        echo "CONF_DIR is empty"
-        echo 'docker ... -e "CONF_DIR=gitlab.com/x/y/config"'
+        echo "CONFIG_DIR is empty"
+        echo 'docker ... -e "CONFIG_DIR=gitlab.com/x/y/config"'
         exit 1
     fi
 
@@ -87,9 +87,6 @@ start() {
     #检测核心环境变量是否为空
     checkVarEmpty
 
-    #重定向CONF_DIR
-    export CONF_DIR=$src/$CONF_DIR
-
     #注入git权限
     writeGitPass
     writeGitHosts
@@ -109,6 +106,8 @@ restart() {
     writeGitHosts
     #获取最新的代码
     updateCode
+    #检测文件是否存在
+    checkFileExists
     #重新编译
     build $mainFile
     #运行
@@ -117,6 +116,7 @@ restart() {
 
 src=$(go env GOPATH)/src
 mainFile=$src/$MAIN_FILE
+export CONF_DIR=$src/$CONFIG_DIR
 
 if [ -f "$(go env GOBIN)/server" ]
 then
