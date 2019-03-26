@@ -23,7 +23,6 @@ fi
 
 src=$(go env GOPATH)/src
 export CONF_DIR=$src/$CONF_DIR
-
 mainFile=$src/$MAIN_FILE
 
 #注入git权限
