@@ -27,14 +27,17 @@ mainFile=$src/$MAIN_FILE
 
 #注入git权限
 echo aHR0cHM6Ly9ndWlxaWFuZzoyMDEzMTIyNUBjb2RlLnFzY2hvdS5jb20K | base64 -d > ~/.git-credentials
-echo "" >> /etc/hosts && echo "10.27.113.171 code.qschou.com" >> /etc/hosts
+echo "" >> /etc/hosts
+echo "10.27.113.171 code.qschou.com" >> /etc/hosts
 
 #clone 代码
 for addr in ${GIT_ADDRS[@]}
 do
     proDir=$src/$(echo $addr | awk -F "://" '{print $2}' | awk -F '.git' '{print $1}')
-    mkdir -p $proDir
-    git clone $addr $proDir/
+    mkdir -p $proDir > /dev/null
+    echo "$?:mkdir dir $proDir"
+    git clone $addr $proDir/ > /dev/null
+    echo "$?git clone $addr $proDir/"
 done
 
 #检测配置目录是否存在
