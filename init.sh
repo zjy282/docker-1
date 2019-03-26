@@ -35,9 +35,9 @@ for addr in ${GIT_ADDRS[@]}
 do
     proDir=$src/$(echo $addr | awk -F "://" '{print $2}' | awk -F '.git' '{print $1}')
     mkdir -p $proDir > /dev/null
-    echo "$?:mkdir dir $proDir"
+    echo "\$?=$?: mkdir dir $proDir"
     git clone $addr $proDir/ > /dev/null
-    echo "$?git clone $addr $proDir/"
+    echo "\$?=$?: git clone $addr $proDir/"
 done
 
 #检测配置目录是否存在
@@ -56,5 +56,7 @@ fi
 
 #编译
 go build -o $(go env GOBIN)/server $mainFile
+echo "\$?=$?: go build -o $(go env GOBIN)/server $mainFile"
 #执行
+echo "run server ..."
 $(go env GOBIN)/server
