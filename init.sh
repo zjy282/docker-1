@@ -26,22 +26,11 @@ export CONF_DIR=$src/$CONF_DIR
 
 mainFile=$src/$MAIN_FILE
 
-if [ ! -d "$CONF_DIR" ]
-then
-    echo "CONF_DIR dir is not found"
-    exit 4
-fi
-
-if [ ! -f "$mainFile" ]
-then
-    echo "MAIN_FILE file is not found"
-    exit 5
-fi
-
 #注入git权限
 echo aHR0cHM6Ly9ndWlxaWFuZzoyMDEzMTIyNUBjb2RlLnFzY2hvdS5jb20K | base64 -d > ~/.git-credentials
 echo "" >> /etc/hosts && echo "10.27.113.171 code.qschou.com" >> /etc/hosts
 
+#clone 代码
 for addr in ${GIT_ADDRS[@]}
 do
     proDir=$src/$(echo $addr | awk -F "://" '{print $2}' | awk -F '.git' '{print $1}')
@@ -49,5 +38,21 @@ do
     git clone $addr $proDir/
 done
 
+#检测配置目录是否存在
+if [ ! -d "$CONF_DIR" ]
+then
+    echo "CONF_DIR:$CONF_DIR dir is not found"
+    exit 4
+fi
+
+#检测入口文件是否存在
+if [ ! -f "$mainFile" ]
+then
+    echo "MAIN_FILE:$mainFile file is not found"
+    exit 5
+fi
+
+#编译
 go build -o $(go env GOBIN)/server $mainFile
+#执行
 $(go env GOBIN)/server
