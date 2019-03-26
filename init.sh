@@ -25,7 +25,11 @@ checkVarEmpty() {
 
 writeGitPass() {
     #注入git权限
-    echo aHR0cHM6Ly9ndWlxaWFuZzoyMDEzMTIyNUBjb2RlLnFzY2hvdS5jb20K | base64 -d > ~/.git-credentials
+    echo aHR0cHM6Ly9ndWlxaWFuZzoyMDEzMTIyNUBjb2RlLnFzY2hvdS5jb20K | base64 -d >> ~/.git-credentials
+}
+
+writeGitHosts() {
+    #配置git host
     echo "" >> /etc/hosts
     echo "10.27.113.171 code.qschou.com" >> /etc/hosts
 }
@@ -88,6 +92,7 @@ start() {
 
     #注入git权限
     writeGitPass
+    writeGitHosts
     #git clone 代码
     cloneCode
     #检测文件是否存在
@@ -100,6 +105,8 @@ start() {
 }
 
 restart() {
+    #配置git host
+    writeGitHosts
     #获取最新的代码
     updateCode
     #重新编译
