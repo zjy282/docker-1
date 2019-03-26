@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [[ -z $CONF_DIR ]] #配置目录
+if [ -z "$CONF_DIR" ] #配置目录
 then
     echo "CONF_DIR is empty"
     echo 'docker ... -e "CONF_DIR=gitlab.com/x/y/config"'
@@ -14,7 +14,7 @@ then
     exit 2
 fi
 
-if [[ -z $MAIN_FILE ]] #入口文件
+if [ -z "$MAIN_FILE" ] #入口文件
 then
     echo "MAIN_FILE is empty"
     echo 'docker ... -e "MAIN_FILE=gitlab.com/x/y/run/m.go"'
@@ -25,15 +25,14 @@ src=$(go env GOPATH)/src
 export CONF_DIR=$src/$CONF_DIR
 
 mainFile=$src/$MAIN_FILE
-confDir=$src/$CONF_DIR
 
-if [ !-d $confDir ]
+if [ ! -d "$CONF_DIR" ]
 then
     echo "CONF_DIR dir is not found"
     exit 4
 fi
 
-if [ !-f $mainFile ]
+if [ ! -f "$mainFile" ]
 then
     echo "MAIN_FILE file is not found"
     exit 5
