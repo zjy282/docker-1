@@ -113,7 +113,9 @@ mainFile=$src/$MAIN_FILE
 
 if [ -f "$(go env GOBIN)/server" ]
 then
+    echo "restart"
     restart
 else
+    echo "start"
     start
 fi
