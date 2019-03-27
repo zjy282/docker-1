@@ -8,9 +8,13 @@ start() {
     #下载并解压zk安装包
     curl -o /opt/zookeeper.tar.gz "https://www-us.apache.org/dist/zookeeper/zookeeper-3.4.13/zookeeper-3.4.13.tar.gz" > /dev/null
     mkdir /opt/zk
-    tar -zxv --directory=/opt/zk -f /opt/zookeeper.tar.gz
+    tar -zxv --directory=/opt/zk -f /opt/zookeeper.tar.gz > /dev/null
     #解压失败退出任务
-    [[ $? == 0 ]] || exit 1
+    if [[ $? == 0 ]] 
+    then
+        echo "failed: tar -zxv --directory=/opt/zk -f /opt/zookeeper.tar.gz"
+        exit 1
+    fi
 
     #安装核心组件
     yum install iproute java-1.8.0-openjdk.x86_64 -y > /dev/null
