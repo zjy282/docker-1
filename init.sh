@@ -1,7 +1,7 @@
 #! /bin/sh
 
 run() {
-    /opt/zookeeper/bin/zkServer.sh start-foreground
+    $zkDir/bin/zkServer.sh start-foreground
 }
 
 start() {
