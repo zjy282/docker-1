@@ -59,6 +59,10 @@ start() {
     run
 }
 
+restart() {
+    run
+}
+
 zkDir=/opt/zk/zookeeper-3.4.13
 if [ -d "$zkDir"] 
 then
