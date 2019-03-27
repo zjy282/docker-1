@@ -10,7 +10,7 @@ start() {
     mkdir /opt/zk
     tar -zxv --directory=/opt/zk -f /opt/zookeeper.tar.gz > /dev/null
     #解压失败退出任务
-    if [[ $? == 0 ]] 
+    if [[ $? -ne 0 ]] 
     then
         echo "failed: tar -zxv --directory=/opt/zk -f /opt/zookeeper.tar.gz"
         exit 1
