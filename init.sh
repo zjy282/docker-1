@@ -66,9 +66,9 @@ restart() {
 zkDir=/opt/zk/zookeeper-3.4.13
 if [ -d "$zkDir"] 
 then
-    echo "start"
-    start
-else
     echo "restart"
     restart
+else
+    echo "start"
+    start
 fi
