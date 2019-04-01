@@ -13,8 +13,6 @@ echo "vpn pptpd $pass *" > /etc/ppp/chap-secrets
 
 unzip /opt/shadowsocks-server.zip -d /opt
 
-echo -e "\ncommand=/opt/shadowsocks-server -p 2333 -k $pass -m aes-256-cfb -t 10" >> /etc/supervisord.d/shadow.ini
-
 echo ""
 echo "password:$pass"
 echo "port:2333"
@@ -22,4 +20,4 @@ echo "encryption:aes-256-cfb"
 echo ""
 
 pptpd
-/usr/bin/supervisord -c /etc/supervisord.conf
+/opt/shadowsocks-server -p 2333 -k $pass -m aes-256-cfb -t 10
