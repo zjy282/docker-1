@@ -84,9 +84,6 @@ checkFileExists() {
 }
 
 start() {
-    #设置上海时区
-    echo Y | cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-
     #检测核心环境变量是否为空
     checkVarEmpty
 
